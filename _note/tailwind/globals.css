@@ -1,0 +1,25 @@
+@tailwind base; /* init styles */
+@tailwind components;
+@tailwind utilities; /* tailwind classes */
+
+/* className에 일일이 css 적을 필요ㄴ 여기서 @apply ~를 적기(재사용ㅇ) component별로 분리하는 게 좋음 */
+
+/* layer로 사용자 추가 정의 */
+/* base */
+@layer base{
+  body{
+    @apply font-semibold text-blue-500;
+  }
+}
+/* utilities - 어디서나 classname으로서 사용가능 */
+@layer utilities{
+  .text-blue{
+    @apply text-blue-500 font-bold text-lg;
+  } 
+}
+/* components - 특정 컴포에 재사용하기 용이 */
+@layer components{
+  .card{
+    @apply bg-white shadow-md rounded-lg p-6;
+  }
+}
