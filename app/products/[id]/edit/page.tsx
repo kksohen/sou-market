@@ -12,7 +12,7 @@ const getCachedProduct = nextCache(getProduct,['product-detail'],{
 });
 
 export default async function EditProducts({params}: {params: {id: string;}}){
-  const {id} = await params;
+  const {id} = params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return notFound();

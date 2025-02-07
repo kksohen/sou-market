@@ -127,7 +127,7 @@ export default async function PostDetail({params}:{params:{id: string}}) {
 
   // await new Promise(resolve => setTimeout(resolve, 60000)); //loading test
 
-  const {id} = await params;
+  const {id} = params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return notFound();

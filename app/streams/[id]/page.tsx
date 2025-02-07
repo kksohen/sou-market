@@ -31,7 +31,7 @@ export default async function StreamDetail({params}: {params:{id: string}}){
 
 // await new Promise(resolve => setTimeout(resolve, 40000));
 
-  const {id} = await params;
+  const {id} = params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return notFound();

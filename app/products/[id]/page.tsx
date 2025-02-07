@@ -21,7 +21,7 @@ const getCachedProduct = nextCache(getProduct, ['product-detail'], {
 } */
 
 export async function generateMetadata({params}: {params: {id: string}}):Promise<Metadata>{
-  const {id} = await params;
+  const {id} = params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return {

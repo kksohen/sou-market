@@ -8,7 +8,7 @@ const getCachedProfile = nextCache(getUserInfo, ['profile-detail'], {
 }); 
 
 export default async function EditProfile({params} : {params: {id: string}}) {
-  const {id} = await params;
+  const {id} = params;
   const idNum = Number(id);
   if(isNaN(idNum)){
     return notFound();

@@ -25,7 +25,7 @@ const getCachedPost = nextCache(getPost,['post-detail'],{
 });
 
 export default async function EditPosts({params}: {params: {id: string;}}){
-  const {id} = await params;
+  const {id} = params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return notFound();
