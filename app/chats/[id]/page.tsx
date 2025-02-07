@@ -10,6 +10,10 @@ import ChatRouteBtn from "@/components/chat-route";
 import ChatsDeleteBtn from "@/components/chat-delete";
 import { formatToWon } from "@/lib/utils";
 
+type Params = Promise<{
+  id: string;
+}>;
+
 async function getRoom(id: string) {
   const room = await db.chatRoom.findUnique({
     where:{
@@ -101,8 +105,8 @@ async function getUserProfile(){
 
 export type InitChatMessages = Prisma.PromiseReturnType<typeof getMessages>;
 
-export default async function ChatRoom({params}: {params: {id: string}}){
-  const {id} = params;
+export default async function ChatRoom({params}: {params : Params}){
+  const {id} = await params;
   const room = await getRoom(id);
   if(!room){
     return notFound();

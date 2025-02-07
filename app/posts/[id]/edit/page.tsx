@@ -3,6 +3,10 @@ import db from "@/lib/db";
 import { unstable_cache as nextCache } from "next/cache";
 import { notFound } from "next/navigation";
 
+type Params = Promise<{
+  id: string;
+}>;
+
 async function getPost(id: number){
   const post = await db.post.findUnique({
     where:{
@@ -24,8 +28,8 @@ const getCachedPost = nextCache(getPost,['post-detail'],{
   tags: ['post-detail']
 });
 
-export default async function EditPosts({params}: {params: {id: string;}}){
-  const {id} = params;
+export default async function EditPosts({params}: {params : Params}){
+  const {id} = await params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return notFound();

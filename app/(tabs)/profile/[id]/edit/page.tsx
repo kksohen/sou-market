@@ -3,12 +3,16 @@ import { getUserInfo } from "../actions";
 import { notFound } from "next/navigation";
 import { unstable_cache as nextCache } from "next/cache";
 
+type Params = Promise<{
+  id: string;
+}>;
+
 const getCachedProfile = nextCache(getUserInfo, ['profile-detail'], {
   tags: ['profile-detail'],
 }); 
 
-export default async function EditProfile({params} : {params: {id: string}}) {
-  const {id} = params;
+export default async function EditProfile({params}: {params : Params}) {
+  const {id} = await params;
   const idNum = Number(id);
   if(isNaN(idNum)){
     return notFound();

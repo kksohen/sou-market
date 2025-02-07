@@ -9,15 +9,13 @@ import { notFound } from "next/navigation";
 2. (...)은 최상위 root폴더(app), 절대경로(/)로 이동 가능, 현재 (..), (...) 둘 다 사용 가능
 3. (.)은 현재 폴더 내(home)에서 intercept 가능
 */
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
+type Params = Promise<{
+  id: string;
+}>;
 
-export default async function Modal({params}: PageProps){
+export default async function Modal({params}: {params : Params}){
   // await new Promise(resolve => setTimeout(resolve, 10000)); loading test
-  const {id} = params;
+  const {id} = await params;
   const idNumber = Number(id);
   
   if(isNaN(idNumber)){

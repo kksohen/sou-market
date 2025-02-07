@@ -11,6 +11,10 @@ import { Metadata } from "next";
 import Link from "next/link";
 import PostDelete from "@/components/post-delete";
 
+type Params = Promise<{
+  id: string;
+}>;
+
 async function getPost(id: number){
   try{
     // console.log(id);
@@ -95,7 +99,7 @@ async function getCachedLikeStatus(postId: number){
   return cachedOperation(postId, userId!);
 }
 
-export async function generateMetadata({params}: {params: {id: string}}):Promise<Metadata>{
+export async function generateMetadata({params}: {params : Params}):Promise<Metadata>{
   const {id} = await params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
@@ -123,11 +127,11 @@ async function getIsOwner(userId: number){
   return false;
 }
 
-export default async function PostDetail({params}:{params:{id: string}}) {
+export default async function PostDetail({params}: {params : Params}) {
 
   // await new Promise(resolve => setTimeout(resolve, 60000)); //loading test
 
-  const {id} = params;
+  const {id} = await params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return notFound();

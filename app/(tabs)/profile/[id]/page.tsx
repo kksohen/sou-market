@@ -9,16 +9,16 @@ import Link from "next/link";
 import ProfileLogout from "@/components/profile-logout";
 import getSession from "@/lib/session/get-session";
 
+type Params = Promise<{
+  id: string;
+}>;
+
 const getCachedProfile = nextCache(getUserInfo, ['profile-detail'], {
   tags: ['profile-detail'],
 })
-/* 
-export const metadata = {
-  title: 'Profile',
-}; */
 
-export async function generateMetadata({params}: {params:{id:string}}):Promise<Metadata>{
-  const {id} = params;
+export async function generateMetadata({params}: {params : Params}):Promise<Metadata>{
+  const {id} = await params;
   const idNum = Number(id);
   if(isNaN(idNum)){
     return {

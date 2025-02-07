@@ -12,6 +12,10 @@ import OnChatBtn from '../../../components/chat-onclick';
 import { getChatRoomStatus } from "@/app/chats/[id]/actions";
 import { getExistChatRoom } from "./actions";
 
+type Params = Promise<{
+  id: string;
+}>;
+
 const getCachedProduct = nextCache(getProduct, ['product-detail'], {
   tags: ['product-detail'], //cache tag들 공유 가능(ex.같은 tag가진 cache들 모두 새로고침ㅇ)
 });
@@ -20,8 +24,8 @@ const getCachedProduct = nextCache(getProduct, ['product-detail'], {
   revalidateTag('product-detail'); //product-detail이라는 tag를 가진 cache만 새로고침ㅇ
 } */
 
-export async function generateMetadata({params}: {params: {id: string}}):Promise<Metadata>{
-  const {id} = params;
+export async function generateMetadata({params}: {params : Params}):Promise<Metadata>{
+  const {id} = await params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return {
@@ -48,7 +52,7 @@ async function getIsOwner(userId: number){
   return false;
 }
 
-export default async function ProductDetail({ params }: { params: { id: string } }) {
+export default async function ProductDetail({params}: {params : Params}) {
   //[id]가 오직 숫자만 받기 때문에 isNaN을 사용하여 숫자가 아닌 경우 404 페이지로 이동
   const {id} = await params;
   // console.log("Received Product ID:", id);

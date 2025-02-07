@@ -6,6 +6,10 @@ import getSession from "@/lib/session/get-session";
 import LiveDelete from "@/components/live-delete";
 import ReplayStream from "@/components/live-replay";
 
+type Params = Promise<{
+  id: string;
+}>;
+
 async function getStream(id: number){
   const stream = await db.liveStream.findUnique({
     where:{
@@ -27,11 +31,9 @@ async function getStream(id: number){
   return stream;
 }
 
-export default async function StreamDetail({params}: {params:{id: string}}){
-
+export default async function StreamDetail({params}: {params : Params}){
 // await new Promise(resolve => setTimeout(resolve, 40000));
-
-  const {id} = params;
+  const {id} = await params;
   const idNumber = Number(id);
   if(isNaN(idNumber)){
     return notFound();
