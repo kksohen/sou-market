@@ -44,7 +44,7 @@ async function getIsOwner(userId: number){
   return false;
 }
 
-export default async function Profile({params}: {params: {id: string}}){
+export default async function Profile({params}: {params : Params}){
   const {id} = await params;
   const idNum = Number(id);
   if(isNaN(idNum)){

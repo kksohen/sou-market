@@ -12,8 +12,11 @@ import { notFound } from "next/navigation";
 type Params = Promise<{
   id: string;
 }>;
+/* type Params = {
+  params: Promise<{id: string}>;
+} */
 
-export default async function Modal({params}: {params : Params}){
+export default async function Modal({ params }: {params : Params} ){
   // await new Promise(resolve => setTimeout(resolve, 10000)); loading test
   const {id} = await params;
   const idNumber = Number(id);
