@@ -46,5 +46,5 @@ next-env.d.ts
 
 # note
 app/_extras/
-/_note/
+_note/
 .vercel
