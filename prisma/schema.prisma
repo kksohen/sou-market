@@ -1,10 +1,15 @@
 generator client {
   provider = "prisma-client-js"
 }
-
-datasource db {
+/* datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
+} */
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 /* prisma schema 작성: npx prisma migrate dev로 수정사항 업데이트 */
 model User{
