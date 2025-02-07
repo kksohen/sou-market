@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: "export",
-  basePath: "/sou-market",
+  /* output: "export",
+  basePath: "/sou-market", */
   experimental:{
     taint: true, //security 기능(server측 코드를 클라이언트에서 볼 수 없도록 막아줌)
   }
@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
   }
   ,
   images: {
-    unoptimized: true,
+    /* unoptimized: true, */
     remotePatterns: [
       {
         /* protocol: "http", */
